@@ -1,12 +1,13 @@
 const express = require("express");
-const User = require("./db/UserSchema");
+const cors = require("cors")
 
 const app = express();
 
+app.use(cors());
+const userRouter = require("./routes/userRoute");
+app.use(express.json());
 
-app.get("/", (req,res)=> {
-  res.send("Hello World");
-})
+app.use("/api/v1/user", userRouter);
 
 
 app.listen(3000,(req,res)=>{

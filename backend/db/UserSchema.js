@@ -1,35 +1,39 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/magesDB");
-const {zod} = require("zod");
+mongoose
+  .connect("mongodb://localhost:27017/magesDB"
+  ).then(()=>{
+    console.log("DB connected successfully")
+  });
+// const {zod} = require("zod");
 
-const z = zod.object({
-  firstName:z.string(),
-  lastName:z.string()
-})
+// const z = zod.object({
+//   firstName:z.string(),
+//   lastName:z.string()
+// })
 const userSchema = new mongoose.Schema({
-  userName: {
+  username: {
     type: String,
-    require: true,
+    required: true,
     trim:true,
-    unique:require,
+    unique:true,
     lowercase:true,
     minLength:3,
     maxLength:30
   },
   password: {
-    type: Password,
-    require: true,
+    type: String,
+    required: true,
     minLength:6
   },
-  firstName: {
+  firstname: {
     type: String,
-    require: true,
+    required: true,
     trim:true,
     maxLength:50
   },
-  lastName: {
+  lastname: {
     type: String,
-    require: true,
+    required: true,
     trim:true,
     maxLength:50
   },
